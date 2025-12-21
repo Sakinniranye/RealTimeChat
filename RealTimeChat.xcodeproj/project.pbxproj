@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -45,6 +45,11 @@
 		7E553C132EF5FBD300862B45 /* RealTimeChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeChatUITests.swift; sourceTree = "<group>"; };
 		7E553C152EF5FBD300862B45 /* RealTimeChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6F8DDC6A2EF763D300C6B47A /* Authentication */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Authentication; sourceTree = "<group>"; };
+		6F8DDC6E2EF76A7900C6B47A /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7E553BF22EF5FBD100862B45 /* Frameworks */ = {
@@ -94,10 +99,12 @@
 		7E553BF72EF5FBD100862B45 /* RealTimeChat */ = {
 			isa = PBXGroup;
 			children = (
+				6F8DDC6A2EF763D300C6B47A /* Authentication */,
 				7E553BF82EF5FBD100862B45 /* RealTimeChatApp.swift */,
 				7E553BFA2EF5FBD100862B45 /* ContentView.swift */,
 				7E553BFC2EF5FBD300862B45 /* Assets.xcassets */,
 				7E553BFE2EF5FBD300862B45 /* Preview Content */,
+				6F8DDC6E2EF76A7900C6B47A /* Utils */,
 			);
 			path = RealTimeChat;
 			sourceTree = "<group>";
@@ -141,6 +148,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6F8DDC6A2EF763D300C6B47A /* Authentication */,
+				6F8DDC6E2EF76A7900C6B47A /* Utils */,
 			);
 			name = RealTimeChat;
 			productName = RealTimeChat;
@@ -417,6 +428,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RealTimeChat/Preview Content\"";
+				DEVELOPMENT_TEAM = B2B4Z75479;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -445,6 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RealTimeChat/Preview Content\"";
+				DEVELOPMENT_TEAM = B2B4Z75479;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
