@@ -79,8 +79,8 @@ struct SignInPage: View {
                 Text(AppStrings.SignIn.dontHaveAccount)
                     .font(AppFont.caption2)
                     .foregroundStyle(.secondary)
-                Button(AppStrings.SignIn.signUp) {
-                    
+                NavigationLink(destination: SignUpPage()) {
+                    Text(AppStrings.SignIn.signUp)
                 }
                 .font(AppFont.caption2)
             }
