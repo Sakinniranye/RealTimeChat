@@ -20,6 +20,17 @@ enum AppStrings {
         static let dontHaveAccount = "Don't have an account?"
         static let signUp = "Sign Up"
     }
+    
+    enum SignUp {
+        static let signUpTitle = "Sign Up"
+        static let signUpSubtitle = "Create your account"
+        static let fullName = "Full Name"
+        static let createPasswordPlaceholder = "Create a password"
+        static let confirmPasswordPlaceholder = "Confirm password"
+        static let SignUpButton = "Sign Up"
+        static let existingAccountPrompt = "Already have an account?"
+        static let logIn = "Log In"
+    }
 
     enum Common {
         
