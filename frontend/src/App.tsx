@@ -12,11 +12,7 @@ function App() {
         path="/"
         element={
           <div>
-            <h1>Welcome to the RealTimeChat App</h1>
-            <Link to="/auth/sign-in">Sign In</Link>
-            <Link to="/auth/sign-up" className="ml-4">
-              Sign Up
-            </Link>
+            <h1>Chat</h1>
           </div>
         }
       />

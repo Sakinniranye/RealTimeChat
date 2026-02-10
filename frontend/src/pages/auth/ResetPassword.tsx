@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import AuthLayout from "../../components/auth/AuthLayout";
 import FormHeader from "../../components/ui/FormHeader";
 import FormInput from "../../components/ui/FormInput";
+import FormButton from "../../components/ui/FormButton";
 
 function ResetPassword() {
+  useEffect(() => {
+    document.title = "Reset Password | RealTimeChat";
+  }, []);
+
   const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>(""); // For user feedback
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -15,7 +21,8 @@ function ResetPassword() {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission logic here
-    alert(`Reset instructions sent to ${email}`);
+    setMessage(`Reset instructions sent to ${email}!`);
+    setEmail("");
   };
 
   return (
@@ -28,7 +35,7 @@ function ResetPassword() {
 
       {/* Form */}
       <form
-        className="flex flex-col gap-4 text-[0.925rem]"
+        className="flex flex-col gap-2 text-[0.925rem]"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col gap-2 text-gray-600">
@@ -39,13 +46,14 @@ function ResetPassword() {
             onChange={onInputChange}
           />
         </div>
-        <button
+        <FormButton
           type="submit"
-          className="w-full border border-gray-200 text-white bg-[#615fff] rounded-sm py-2 transition hover:bg-[#504de0]"
-        >
-          Send Reset Instructions
-        </button>
+          text="Send Reset Instructions"
+          disabled={email.length === 0}
+        />
+        {message && <p className="text-green-600 mt-4">{message}</p>}
       </form>
+
       <Link
         to="/auth/sign-in"
         className="text-[#615fff] hover:underline text-center"

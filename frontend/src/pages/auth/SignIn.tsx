@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import FormHeader from "../../components/ui/FormHeader";
 import FormInput from "../../components/ui/FormInput";
 import AuthLayout from "../../components/auth/AuthLayout";
+import FormButton from "../../components/ui/FormButton";
 
 function SignIn() {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -25,6 +25,10 @@ function SignIn() {
     event.preventDefault();
     // Handle form submission logic here
     alert(`Email: ${formData.email}, Password: ${formData.password}`);
+    setFormData({
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -39,7 +43,7 @@ function SignIn() {
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2">
           <FormInput
-            label="Email"
+            label="Email or Username"
             id="email"
             type="email"
             onChange={onInputChange}
@@ -60,16 +64,16 @@ function SignIn() {
             </Link>
           </div>
         </div>
-
-        <button
+        <FormButton
           type="submit"
-          className="w-full border border-gray-200 text-white bg-[#615fff] rounded-sm py-2 transition hover:bg-[#504de0]"
-        >
-          Sign In
-        </button>
+          text="Sign In"
+          disabled={
+            formData.email.length === 0 || formData.password.length === 0
+          }
+        />
       </form>
       <div className="flex items-center gap-1 mt-4 justify-center">
-        <p>Don't have an Account?</p>
+        <p>Don't have an account?</p>
         <Link to="/auth/sign-up" className="text-[#615fff] hover:underline">
           Sign up
         </Link>
