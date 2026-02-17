@@ -1,3 +1,4 @@
+// Main entry to our chat backend application
 import app from "./app";
 import config from "./config/config";
 
