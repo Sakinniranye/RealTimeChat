@@ -5,11 +5,7 @@ dotenv.config();
 interface Config {
   port: number;
   nodeEnv: string;
-  databaseName: string;
-  databaseUser: string;
-  databaseUserPassword: string;
-  databaseHost: string;
-  databasePort: number;
+  databaseUrl: string;
 }
 
 console.log(process.env.PORT);
@@ -17,12 +13,7 @@ console.log(process.env.PORT);
 const config: Config = {
   port: Number(process.env.PORT) || 3000,
   nodeEnv: process.env.NODE_ENV || "development",
-
-  databaseName: process.env.DATABASE_NAME || "testdb",
-  databaseUser: process.env.DATABASE_USER || "",
-  databaseUserPassword: process.env.DATABASE_USER_PASSWORD || "",
-  databaseHost: process.env.DATABASE_HOST || "",
-  databasePort: Number(process.env.DATABASE_PORT) || 5432,
+  databaseUrl: process.env.DATABASE_URL || "postgres://user:password@localhost:5432/testdb",
 };
 
 export default config;

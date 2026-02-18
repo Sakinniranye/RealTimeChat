@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import userRoutes from "./routes/usersRoutes";
+import authRoutes from "./routes/authRoutes";
 
 const app = express();
 
@@ -11,6 +11,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 // User routes
-app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 export default app;
