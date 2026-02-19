@@ -1,9 +1,29 @@
-import express from "express";
-import { registerUser, loginUser } from "../controller/authController";
+import { Router } from "express";
+import authController from "../controllers/authController";
+const { body } = require("express-validator");
 
-const router = express().router;
+const router = Router();
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+const validateRegister = [
+  body("email")
+    .isEmail()
+    .notEmpty()
+    .withMessage("Please enter your email address."),
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage("Password must be atleast 8 characters long."),
+];
+
+router.post("/register", validateRegister, authController.registerUser);
+
+const validateLogin = [
+  body("email")
+    .isEmail()
+    .notEmpty()
+    .withMessage("Please enter your email address."),
+  body("password").notEmpty().withMessage("Password is required."),
+];
+
+router.post("/login", validateLogin, authController.loginUser);
 
 export default router;

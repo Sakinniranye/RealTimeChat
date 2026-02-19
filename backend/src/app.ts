@@ -1,16 +1,16 @@
 import express, { Request, Response } from "express";
-import userRoutes from "./routes/usersRoutes";
+import authRoutes from "./routes/authRoutes";
+import protectedRoute from "./middleware/protectedRoutes";
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
 
 app.use(express.json());
 
-// Routes
-app.get("/", (req: Request, res: Response) => {
-  res.send("Welcome to the Authentication App API");
-});
-
 // User routes
-app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+
+// Routes
+app.use("/api/profile", userRoutes);
 
 export default app;
