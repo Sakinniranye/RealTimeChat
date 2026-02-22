@@ -20,29 +20,40 @@ const getProfile = async(req: Request, res: Response) => {
     return res.status(200).json({ success: true, user });
 
   } catch (error: any) {
-    console.error(error);
     return res.status(500).json({
-      status: "error",
-      msg: "Internal server error.",
-      errors: error.message,
+      msg: "There was an error getting the user profile",
+      success: false,
     });
   }
 }
 
-const testProtectedRoute = async (req: Request, res: Response) => {
+const searchUser = async (req: Request, res: Response) => {
   try {
+    const { username } = req.query;
+
+    if (!username || typeof username !== "string") {
+      return res.status(400).json({ success: false, msg: "Username query is required" });
+    }
+
     const user = await prisma.user.findUnique({
-      where: { id: String(req.userId) },
+      where: { username },
+      select: { id: true, username: true, avatarUrl: true,createdAt: true }
     });
-    res.json({
-      msg: "This is a protected route. Your user ID is: " + req.userId,
-      user: user?.email,
-    });
+ 
+    if (!user) {
+      return res.status(404).json({ success: false, msg: "User not found" });
+    }
+
+    return res.status(200).json({ success: true, user });
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ msg: "Server error" });
+    return res.status(500).json({
+      msg: "There was an error searching for the user",
+      success: false,
+    });
   }
 };
 
-const userController = {  getProfile, testProtectedRoute }
+const userController = { getProfile, searchUser }
 export default userController;

@@ -44,11 +44,9 @@ const registerUser = async (req: Request, res: Response) => {
       token: token,
     });
   } catch (error: any) {
-    console.error(error);
     return res.status(500).json({
-      status: "error",
-      msg: "Internal server error.",
-      errors: error.message,
+      msg: "There was an error signing up",
+      success: false,
     });
   }
 };
@@ -85,7 +83,7 @@ const loginUser = async (req: Request, res: Response) => {
         userId: foundUser.id,
       },
       config.jwtSecret!,
-      { expiresIn: "1m" },
+      { expiresIn: "1h" },
     );
 
     res.json({
