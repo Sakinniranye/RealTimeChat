@@ -1,16 +1,17 @@
 import express, { Request, Response } from "express";
+
+// Routes imports
 import authRoutes from "./routes/authRoutes";
-import protectedRoute from "./middleware/protectedRoutes";
 import userRoutes from "./routes/userRoutes";
 
 const app = express();
 
 app.use(express.json());
 
-// User routes
+// Public routes
 app.use("/api/auth", authRoutes);
 
-// Routes
+// Protected routes
 app.use("/api/profile", userRoutes);
 
 export default app;
