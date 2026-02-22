@@ -35,11 +35,11 @@ const searchUser = async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, msg: "Username query is required" });
     }
 
-    const user = await prisma.user.findUnique({
-      where: { username },
-      select: { id: true, username: true, avatarUrl: true,createdAt: true }
+    const user = await prisma.user.findMany({
+      where: { username: { contains: username } },
+      select: { id: true, username: true, avatarUrl: true, createdAt: true }
     });
- 
+
     if (!user) {
       return res.status(404).json({ success: false, msg: "User not found" });
     }
