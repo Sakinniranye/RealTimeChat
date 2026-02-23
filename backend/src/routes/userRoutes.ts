@@ -1,22 +1,17 @@
 import express from "express";
 import protectedRoute from "../middleware/protectedRoutes";
-import { prisma } from "../config/prisma";
+import userController from "../controllers/userController";
 
 const router = express.Router();
 
-router.get("/", protectedRoute, async (req, res) => {
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: String(req.userId) },
-    });
-    res.json({
-      msg: "This is a protected route. Your user ID is: " + req.userId,
-      user: user?.email,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: "Server error" });
-  }
-});
+// GET /api/users/me
+router.get("/me", protectedRoute, userController.getProfile);
 
+// GET /api/users/search?username=
+router.get("/search", protectedRoute, userController.searchUser);
+
+// GET /api/users/:id
+router.get("/:id", userController.getUserById);
+
+// PATCH /users/me — Update profile (name, avatar URL)
 export default router;

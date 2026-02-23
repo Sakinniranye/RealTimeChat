@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 
 // Routes imports
 import authRoutes from "./routes/authRoutes";
@@ -11,7 +11,7 @@ app.use(express.json());
 // Public routes
 app.use("/api/auth", authRoutes);
 
-// Protected routes
-app.use("/api/profile", userRoutes);
+// Protected Routes
+app.use("/api/users", userRoutes);
 
 export default app;

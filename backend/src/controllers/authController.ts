@@ -12,9 +12,10 @@ import config from "../config/config";
  * @access Public
  */
 const registerUser = async (req: Request, res: Response) => {
+  // Validte the incoming request body with express-validator
   const errors = validationResult(req);
 
-  // Respond with a 400 Bad Request if there are validation errors
+  // Respond with a 400 Bad Request if errors
   if (errors.isEmpty() === false) {
     return res.status(400).json({
       success: false,
@@ -42,14 +43,19 @@ const registerUser = async (req: Request, res: Response) => {
       message: "User created successfully.",
     });
   } catch (error: any) {
-    console.error(error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error.",
+      message: "There was an error signing up",
     });
   }
 };
 
+/**
+ * Login an existing user and return a JWT token for authentication
+ *
+ * @route POST /api/auth/login
+ * @access Public
+ */
 const loginUser = async (req: Request, res: Response) => {
   const errors = validationResult(req);
 
@@ -87,7 +93,7 @@ const loginUser = async (req: Request, res: Response) => {
         userId: foundUser.id,
       },
       config.jwtSecret!,
-      { expiresIn: "1m" },
+      { expiresIn: "1h" },
     );
 
     res.json({
